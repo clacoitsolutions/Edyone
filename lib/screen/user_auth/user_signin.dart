@@ -1,3 +1,5 @@
+import 'package:edyon_project/screen/user_auth/user_forgotpassword.dart';
+import 'package:edyon_project/screen/user_auth/user_registration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -55,10 +57,11 @@ class _SignInPageState extends State<SignInPage> {
     return Scaffold (
       body: SingleChildScrollView(
         child:Padding(
-        padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 30.0),
+        padding: const EdgeInsets.fromLTRB(30.0, 120.0, 30.0, 30.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -67,20 +70,20 @@ class _SignInPageState extends State<SignInPage> {
                     'Welcome back!',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 22,
+                      fontSize: 26,
                     ),
                   ),
                   Text(
                     'Sign in to continue',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 22,
+                      fontSize: 26,
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 50),
             Container(
               decoration: BoxDecoration(
                 border: Border(
@@ -96,10 +99,11 @@ class _SignInPageState extends State<SignInPage> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Image.network(
-                              'https://png.pngtree.com/png-vector/20220812/ourmid/pngtree-indian-flag-design-png-png-image_6108311.png',
-                              height: 30,
-                            ),
+                            Image.asset(
+                            'assets/images/flag.png',
+                            height: 30,
+                              width: 30,
+                             ),
                             const SizedBox(width: 5),
                           ],
                         ),
@@ -108,7 +112,7 @@ class _SignInPageState extends State<SignInPage> {
                         child: const Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 5),
+                              padding: const EdgeInsets.only(top: 0),
                               child: Center(
                                 child: Text(
                                   '+91',
@@ -116,7 +120,7 @@ class _SignInPageState extends State<SignInPage> {
                                 ),
                               ),
                             ),
-                            SizedBox(width: 5),
+                            SizedBox(width: 8),
                             Center(
                               child: Text(
                                 '|',
@@ -126,13 +130,16 @@ class _SignInPageState extends State<SignInPage> {
                           ],
                         ),
                       ),
-                      SizedBox(width: 5),
+                      SizedBox(width: 8),
                       Expanded(
                         child: Container(
                           child: TextField(
                             controller: _phoneNumberController,
                             decoration: InputDecoration(
                               hintText: 'Enter Mobile Number',
+                              hintStyle: TextStyle(
+                                fontSize: 18,  // Set the font size to 18 logical pixels
+                              ),
                               border: InputBorder.none,
                             ),
                           ),
@@ -191,13 +198,13 @@ class _SignInPageState extends State<SignInPage> {
             Row(
               children: [
                 if (_phoneNumberError != null || _passwordError != null)
-                  Expanded(
+                  const Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
+                      padding: EdgeInsets.only(left: 10.0),
                       child: Text(
                         'Error:',
                         textAlign: TextAlign.left,
-                        style: const TextStyle(color: Colors.red),
+                        style: TextStyle(color: Colors.red),
                       ),
                     ),
                   ),
@@ -206,13 +213,20 @@ class _SignInPageState extends State<SignInPage> {
                     alignment: Alignment.centerRight,
                     child: GestureDetector(
                       onTap: () {
-                        // Handle Forgot Password Click
-                        print('Forgot Password clicked');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => forgotpassword()),
+                        );
                       },
                       child: const Text(
                         'Forgot Password?',
-                        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,  // Set the font size to 14 logical pixels
+                        ),
                       ),
+
                     ),
                   ),
                 ),
@@ -224,35 +238,39 @@ class _SignInPageState extends State<SignInPage> {
               child: Container(
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Colors.blue, Colors.pink],
+                    colors: [Color(0xFFA10048), Color(0xFF2300FF)],  // Corrected color instantiation
                     stops: [0.0, 1.0],
                   ),
                   borderRadius: BorderRadius.circular(5.0),
                 ),
-                child: ElevatedButton(
-                  onPressed: _signIn,
-                  style: ButtonStyle(
-                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15.0)),
-                    shape: MaterialStateProperty.all<OutlinedBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
+                child: SizedBox(
+                  height: 50,  // Set the height to 60
+                  child: ElevatedButton(
+                    onPressed: _signIn,
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15.0)),
+                      shape: MaterialStateProperty.all<OutlinedBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
                       ),
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
+                      foregroundColor: MaterialStateProperty.resolveWith((states) {
+                        if (states.contains(MaterialState.disabled)) {
+                          return Colors.black54;
+                        }
+                        return Colors.white;
+                      }),
                     ),
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-                    foregroundColor: MaterialStateProperty.resolveWith((states) {
-                      if (states.contains(MaterialState.disabled)) {
-                        return Colors.black54;
-                      }
-                      return Colors.white;
-                    }),
-                  ),
-                  child: const Text(
-                    'Sign In',
-                    style: TextStyle(fontSize: 16),
+                    child: const Text(
+                      'Sign In',
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
                 ),
               ),
             ),
+
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -264,14 +282,23 @@ class _SignInPageState extends State<SignInPage> {
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text("Don't have an account? ",style: TextStyle(color: Colors.black54),),
-                Text(
-                  'Register',
-                  style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),
+              children: [
+                Text("Don't have account? "),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RegistrationApp()),
+                    );
+                  },
+                  child: Text(
+                    'Registration',
+                    style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold),
+                  ),
                 ),
               ],
             ),
+
           ],
         ),
       ),

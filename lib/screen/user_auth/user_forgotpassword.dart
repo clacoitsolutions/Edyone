@@ -1,4 +1,7 @@
+import 'package:edyon_project/screen/user_auth/user_signin.dart';
 import 'package:flutter/material.dart';
+
+import 'fogotpassword_otp.dart';
 
 class forgotpassword extends StatefulWidget {
   const forgotpassword({Key? key}) : super(key: key);
@@ -44,7 +47,7 @@ class _forgotpassword extends State<forgotpassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(30.0, 60.0, 30.0, 30.0), // Added space at the top
+        padding: const EdgeInsets.fromLTRB(30.0, 80.0, 30.0, 30.0), // Added space at the top
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -62,7 +65,7 @@ class _forgotpassword extends State<forgotpassword> {
               'Enter Your Mobile Number',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 22, // Set font size to 25
+                fontSize: 20, // Set font size to 25
               ),
             ),
             const SizedBox(height: 8), // Added space between first row and second row
@@ -78,10 +81,10 @@ class _forgotpassword extends State<forgotpassword> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center, // Align items to the center vertically
                       children: [
-                        Image.network(
-                          'https://png.pngtree.com/png-vector/20220812/ourmid/pngtree-indian-flag-design-png-png-image_6108311.png', // Replace 'https://example.com/your_image.png' with the URL of your online image
-                          height: 30,
-                        ),
+            //   Image.asset(
+            //  'assets/images/flag.png',
+            //    height: 30,
+            // ),
                         const SizedBox(width: 5),
                       ],
                     ),
@@ -115,6 +118,10 @@ class _forgotpassword extends State<forgotpassword> {
                         controller: _phoneNumberController,
                         decoration: const InputDecoration(
                           hintText: 'Enter Mobile Number',
+
+                          hintStyle: TextStyle(
+                            fontSize: 18,  // Set the font size to 18 logical pixels
+                          ),
                           border: InputBorder.none, // Remove TextField border
                         ),
                       ),
@@ -136,14 +143,24 @@ class _forgotpassword extends State<forgotpassword> {
               width: double.infinity,
               child: Container(
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.blue, Colors.pink],
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFA10048), Color(0xFF2300FF)],  // Corrected color instantiation
                     stops: [0.0, 1.0],
                   ),
                   borderRadius: BorderRadius.circular(5.0),
                 ),
+    child: SizedBox(
+    height: 50,
                 child: ElevatedButton(
-                  onPressed: _sendOTP,
+                  onPressed: () {
+                    // Call the function to send OTP
+                    _sendOTP();
+                    // Redirect to OTP page
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EnterOTPPage()),
+                    );
+                  },
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15.0)),
                     shape: MaterialStateProperty.all<OutlinedBorder>(
@@ -164,20 +181,30 @@ class _forgotpassword extends State<forgotpassword> {
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
+    ),
               ),
             ),
 
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Text("Already have an account? "),
-                Text(
-                  'Login',
-                  style: TextStyle(color: Colors.purple),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignInPage()),
+                    );
+                  },
+                  child: Text(
+                    'Login',
+                    style: TextStyle(color: Colors.purple),
+                  ),
                 ),
               ],
             ),
+
           ],
         ),
       ),

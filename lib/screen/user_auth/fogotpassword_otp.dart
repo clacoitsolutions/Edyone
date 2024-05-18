@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+import 'create_password.dart';
+
 class EnterOTPPage extends StatefulWidget {
   const EnterOTPPage({Key? key}) : super(key: key);
 
@@ -138,14 +140,22 @@ class _EnterOTPPageState extends State<EnterOTPPage> {
               width: double.infinity,
               child: Container(
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.blue, Colors.pink],
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFA10048), Color(0xFF2300FF)],  // Corrected color instantiation
                     stops: [0.0, 1.0],
                   ),
                   borderRadius: BorderRadius.circular(5.0),
                 ),
                 child: ElevatedButton(
-                  onPressed: _verifyOTP,
+                  onPressed: () {
+                    // Call the function to verify OTP
+                    _verifyOTP();
+                    // Redirect to Create New Password page
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CreatePasswordPage()),
+                    );
+                  },
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15.0)),
                     shape: MaterialStateProperty.all<OutlinedBorder>(
@@ -171,6 +181,7 @@ class _EnterOTPPageState extends State<EnterOTPPage> {
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
+
               ),
             ),
 

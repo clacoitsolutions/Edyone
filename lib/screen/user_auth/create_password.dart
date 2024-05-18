@@ -198,7 +198,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
                     }),
                   ),
                   child: const Text(
-                    'Send OTP',
+                    'Submit',
                     style: TextStyle(fontSize: 16),
                   ),
                 ),

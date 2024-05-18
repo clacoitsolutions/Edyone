@@ -138,8 +138,8 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
               width: double.infinity,
               child: Container(
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.blue, Colors.pink],
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFA10048), Color(0xFF2300FF)],  // Corrected color instantiation
                     stops: [0.0, 1.0],
                   ),
                   borderRadius: BorderRadius.circular(5.0),
