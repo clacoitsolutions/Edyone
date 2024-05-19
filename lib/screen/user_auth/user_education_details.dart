@@ -59,7 +59,7 @@ class BottomButton extends StatelessWidget {
           height: 56.0,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.pink, Colors.blue], // Gradient colors
+              colors: [Color(0xFFA10048), Color(0xFF2300FF)], // Gradient colors
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
             ),
@@ -67,7 +67,7 @@ class BottomButton extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              'Submit',
+              'Continue',
               style: TextStyle(color: Colors.white,fontSize: 16.0),
             ),
           ),

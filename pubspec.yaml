@@ -9,7 +9,9 @@ environment:
 
 dependencies:
   flutter:
-    sdk: flutter
+   sdk: flutter
+  http: ^0.13.3
+  smooth_page_indicator: ^1.1.0  # Updated version
   cupertino_icons: ^1.0.6
 
 
@@ -25,5 +27,16 @@ flutter:
 
   assets:
     - assets/images/
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Light.ttf
+
+
+
+
+
 
 

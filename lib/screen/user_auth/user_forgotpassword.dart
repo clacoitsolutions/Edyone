@@ -7,10 +7,10 @@ class forgotpassword extends StatefulWidget {
   const forgotpassword({Key? key}) : super(key: key);
 
   @override
-  _forgotpassword createState() => _forgotpassword();
+  _ForgotPasswordState createState() => _ForgotPasswordState();
 }
 
-class _forgotpassword extends State<forgotpassword> {
+class _ForgotPasswordState extends State<forgotpassword> {
   final TextEditingController _phoneNumberController = TextEditingController();
   String? _errorMessage;
 
@@ -25,11 +25,11 @@ class _forgotpassword extends State<forgotpassword> {
     RegExp regex = RegExp(r'^[6-9]\d{9}$'); // Regular expression for validating 10-digit numbers starting with 6, 7, 8, or 9
     if (_phoneNumberController.text.isEmpty) {
       setState(() {
-        _errorMessage = 'Please enter a mobile number';
+        _errorMessage = 'Please enter valid mobile number';
       });
     } else if (!regex.hasMatch(_phoneNumberController.text)) {
       setState(() {
-        _errorMessage = 'Please enter a valid  mobile number';
+        _errorMessage = 'Please enter valid mobile number';
       });
     } else {
       // Reset error message
@@ -41,7 +41,6 @@ class _forgotpassword extends State<forgotpassword> {
       print('OTP Sent to ${_phoneNumberController.text}');
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -75,58 +74,65 @@ class _forgotpassword extends State<forgotpassword> {
                   bottom: BorderSide(color: Colors.grey),
                 ),
               ),
-              child: Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center, // Align items to the center vertically
-                      children: [
-            //   Image.asset(
-            //  'assets/images/flag.png',
-            //    height: 30,
-            // ),
-                        const SizedBox(width: 5),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    child: const Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5), // Add space only at the top
-                          child: Center(
-                            child: Text(
-                              '+91',
-                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  Row(
+                    children: [
+                      Container(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/flag.png',
+                              height: 30,
+                              width: 30,
+                            ),
+                            const SizedBox(width: 5),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: const Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: Center(
+                                child: Text(
+                                  '+91',
+                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18,fontFamily: 'Poppins'),
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 8),
+                            Center(
+                              child: Text(
+                                '|',
+                                style: TextStyle(fontSize: 24, color: Colors.grey,fontFamily: 'Poppins'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: 8),
+                      Expanded(
+                        child: Container(
+                          child: TextField(
+                            controller: _phoneNumberController,
+                            decoration: InputDecoration(
+                              hintText: 'Enter Mobile Number',
+                              hintStyle: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'Poppins'// Set the font size to 18 logical pixels
+                              ),
+                              border: InputBorder.none,
                             ),
                           ),
                         ),
-                        SizedBox(width: 5),
-                        Center( // Center the text vertically
-                          child: Text(
-                            '|',
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.grey),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(width: 5),
-                  Expanded(
-                    child: Container(
-                      child: TextField(
-                        controller: _phoneNumberController,
-                        decoration: const InputDecoration(
-                          hintText: 'Enter Mobile Number',
-
-                          hintStyle: TextStyle(
-                            fontSize: 18,  // Set the font size to 18 logical pixels
-                          ),
-                          border: InputBorder.none, // Remove TextField border
-                        ),
                       ),
-                    ),
+                    ],
                   ),
+
                 ],
               ),
             ),
@@ -144,47 +150,46 @@ class _forgotpassword extends State<forgotpassword> {
               child: Container(
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Color(0xFFA10048), Color(0xFF2300FF)],  // Corrected color instantiation
+                    colors: [Color(0xFFA10048), Color(0xFF2300FF)], // Corrected color instantiation
                     stops: [0.0, 1.0],
                   ),
                   borderRadius: BorderRadius.circular(5.0),
                 ),
-    child: SizedBox(
-    height: 50,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Call the function to send OTP
-                    _sendOTP();
-                    // Redirect to OTP page
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => EnterOTPPage()),
-                    );
-                  },
-                  style: ButtonStyle(
-                    padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15.0)),
-                    shape: MaterialStateProperty.all<OutlinedBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5.0),
+                child: SizedBox(
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Call the function to send OTP
+                      _sendOTP();
+                      // Redirect to OTP page
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => EnterOTPPage()),
+                      );
+                    },
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15.0)),
+                      shape: MaterialStateProperty.all<OutlinedBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
                       ),
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
+                      foregroundColor: MaterialStateProperty.resolveWith((states) {
+                        if (states.contains(MaterialState.disabled)) {
+                          return Colors.black54; // Text color when disabled
+                        }
+                        return Colors.white; // Text color when enabled
+                      }),
                     ),
-                    backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-                    foregroundColor: MaterialStateProperty.resolveWith((states) {
-                      if (states.contains(MaterialState.disabled)) {
-                        return Colors.black54; // Text color when disabled
-                      }
-                      return Colors.white; // Text color when enabled
-                    }),
-                  ),
-                  child: const Text(
-                    'Send OTP',
-                    style: TextStyle(fontSize: 16),
+                    child: const Text(
+                      'Send OTP',
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
                 ),
-    ),
               ),
             ),
-
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -199,12 +204,11 @@ class _forgotpassword extends State<forgotpassword> {
                   },
                   child: Text(
                     'Login',
-                    style: TextStyle(color: Colors.purple),
+                    style: TextStyle(color:Color(0xFF0000FF),fontWeight: FontWeight.bold, ),
                   ),
                 ),
               ],
             ),
-
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-import 'create_password.dart';
+import 'user_create_password.dart';
 
 class EnterOTPPage extends StatefulWidget {
   const EnterOTPPage({Key? key}) : super(key: key);
@@ -61,7 +61,8 @@ class _EnterOTPPageState extends State<EnterOTPPage> {
               'Enter OTP',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 25, // Set font size to 25
+                fontSize: 25,
+                  fontFamily:'Poppins',// Set font size to 25
               ),
             ),
             const SizedBox(height: 0), // Added space between first row and second row
@@ -116,7 +117,9 @@ class _EnterOTPPageState extends State<EnterOTPPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '60 seconds left', // Initially showing 60 seconds
+                    '60 seconds left',
+                    style:TextStyle(fontFamily:'Poppins',
+                    fontSize: 12)// Initially showing 60 seconds
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 50.0), // Added padding from the left side
@@ -126,7 +129,7 @@ class _EnterOTPPageState extends State<EnterOTPPage> {
                       },
                       child: Text(
                         'Resend OTP',
-                        style: TextStyle(color: Colors.blue),
+                        style: TextStyle(color: Colors.blue,fontSize:16,fontFamily:'Poppins'),
                       ),
                     ),
                   ),
@@ -178,14 +181,12 @@ class _EnterOTPPageState extends State<EnterOTPPage> {
                   ),
                   child: const Text(
                     'Verify OTP',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16, fontFamily:'Poppins'),
                   ),
                 ),
 
               ),
             ),
-
-
 
 
           ],

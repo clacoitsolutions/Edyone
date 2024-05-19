@@ -135,7 +135,8 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
             // ),
             SizedBox(height: 150),
             SizedBox(
-              width: double.infinity,
+              width: 335,
+              height: 60,
               child: Container(
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(

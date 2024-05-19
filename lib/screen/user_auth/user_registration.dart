@@ -1,8 +1,10 @@
 
+import 'dart:convert';
+
 import 'package:edyon_project/screen/user_auth/user_education_details.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
 
 
 class RegistrationApp extends StatelessWidget {
@@ -32,6 +34,52 @@ class _RegistrationPageState extends State<RegistrationPage> {
   TextEditingController _zipCodeController = TextEditingController();
   bool _agreeToTerms = false;
   String? _selectedGender;
+
+
+
+
+  void _continueButton() async {
+    if (_formKey.currentState!.validate() && _agreeToTerms) {
+      // Prepare data to send
+      var data = {
+        'name': _fullNameController.text,
+        'email': _emailController.text,
+        'gender':_genderController,
+        'dob':_dobController,
+        // Other data...
+      };
+
+      // Send POST request
+      var response = await http.post(
+        Uri.parse('http://127.0.0.1:8000/api/student/detail-step1'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(data),
+      );
+
+      if (response.statusCode == 200) {
+        // Registration successful
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => EducationDetails()),
+        );
+      } else {
+        // Registration failed
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Registration failed. Please try again.'),
+          ),
+        );
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Please fill in all the fields and agree to the terms.'),
+        ),
+      );
+    }
+  }
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -269,7 +317,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               borderRadius: BorderRadius.circular(5.0),
             ),
             child: ElevatedButton(
-              onPressed: _continueButtonPressed,
+              onPressed:_continueButton,
               style: ButtonStyle(
                 shape
 
@@ -283,7 +331,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 ),
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent), // Transparent background to allow gradient to show through
               ),
-              child: Text(
+              child: const Text(
                 "Continue",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,

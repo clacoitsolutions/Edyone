@@ -101,7 +101,7 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
             const Text(
               'Create Password',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
+
                 fontSize: 22,
               ),
             ),
@@ -112,8 +112,8 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
               controller: _passwordController,
               obscureText: !_passwordVisible,
               decoration: InputDecoration(
-                hintText: 'Password',
-                labelText: 'Password',
+                hintText: 'Enter New Password',
+
                 enabledBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey),
                 ),
@@ -140,7 +140,6 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
               obscureText: !_confirmPasswordVisible,
               decoration: InputDecoration(
                 hintText: 'Confirm Password',
-                labelText: 'Confirm Password',
                 enabledBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey),
                 ),
@@ -212,8 +211,8 @@ class _CreatePasswordPageState extends State<CreatePasswordPage> {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: CreatePasswordPage(),
-  ));
-}
+// void main() {
+//   runApp(MaterialApp(
+//     home: CreatePasswordPage(),
+//   ));
+// }
