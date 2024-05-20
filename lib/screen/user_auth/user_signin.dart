@@ -1,4 +1,4 @@
-import 'package:edyon_project/screen/user_auth/user_forgotpassword.dart';
+import 'package:edyon_project/screen/user_auth/user_registerotp.dart';
 import 'package:edyon_project/screen/user_auth/user_registration.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

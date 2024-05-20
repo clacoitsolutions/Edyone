@@ -1,7 +1,6 @@
+import 'package:edyon_project/screen/user_auth/register_otp.dart';
 import 'package:edyon_project/screen/user_auth/user_signin.dart';
 import 'package:flutter/material.dart';
-
-import 'fogotpassword_otp.dart';
 
 class forgotpassword extends StatefulWidget {
   const forgotpassword({Key? key}) : super(key: key);

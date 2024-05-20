@@ -76,23 +76,36 @@ class _SplashScreensState extends State<SplashScreens> {
             ],
           ),
           Positioned(
-            bottom: 250,
+            bottom: 170,
             left: 0,
             right: 0,
             child: Center(
               child: SmoothPageIndicator(
                 controller: _pageController,
                 count: 3,
-                effect: WormEffect(
-                  dotWidth: 10.0,
-                  dotHeight: 10.0,
+                effect: CustomizableEffect(
+                  activeDotDecoration: DotDecoration(
+                    width: 12,
+                    height: 12,
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(6),
+                    dotBorder: DotBorder(
+                      color: Color(0xFF1A21BC),
+                      width: 5,
+                    ),
+                  ),
+                  dotDecoration: DotDecoration(
+                    width: 10,
+                    height: 10,
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
                   spacing: 16.0,
-                  dotColor: Colors.grey,
-                  activeDotColor: Colors.blue,
                 ),
               ),
             ),
           ),
+
           Positioned(
             top: 50,
             right: 20,
@@ -101,15 +114,17 @@ class _SplashScreensState extends State<SplashScreens> {
               child: Text('Skip', style: TextStyle(fontSize: 18, color: Colors.blue)),
             ),
           ),
+
+
           Positioned(
-            bottom: 100,
+            bottom: 20,
             left: 0,
             right: 0,
             child: Column(
               children: [
                 Container(
-                  width: 335,
-                  height: 65,
+                  width: 235,
+                  height: 55,
                   margin: EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
@@ -152,15 +167,13 @@ class _SplashScreensState extends State<SplashScreens> {
                   ),
                 ),
                 Container(
-                  width: 335,
-                  height: 65,
+                  width: 235,
+                  height: 55,
                   margin: EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFFA10048), Color(0xFF2300FF)],
-                      stops: [0.0, 1.0],
-                    ),
+                    color: Colors.white, // Set container color to white
                     borderRadius: BorderRadius.circular(5.0),
+                    border: Border.all(color: Color(0xFFCFD1D4)), // Set container border color
                   ),
                   child: ElevatedButton(
                     onPressed: () {
@@ -180,13 +193,13 @@ class _SplashScreensState extends State<SplashScreens> {
                         if (states.contains(MaterialState.disabled)) {
                           return Colors.grey; // Silver color when disabled
                         }
-                        return Colors.transparent; // Transparent background to allow gradient to show
+                        return Colors.white; // Button color when enabled
                       }),
                       foregroundColor: MaterialStateProperty.resolveWith((states) {
                         if (states.contains(MaterialState.disabled)) {
                           return Colors.black54; // Text color when disabled
                         }
-                        return Colors.white; // Text color when enabled
+                        return Color(0xFFA10048);// Text color when enabled
                       }),
                     ),
                     child: const Text(
@@ -195,6 +208,12 @@ class _SplashScreensState extends State<SplashScreens> {
                     ),
                   ),
                 ),
+
+
+
+
+
+
               ],
             ),
           ),
@@ -203,6 +222,8 @@ class _SplashScreensState extends State<SplashScreens> {
     );
   }
 }
+
+
 
 class SplashScreenContent extends StatelessWidget {
   final String imagePath;
@@ -218,301 +239,43 @@ class SplashScreenContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SingleChildScrollView(
+        child: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              imagePath,
-              width: 219,
-              height: 187,
-            ),
-            SizedBox(height: 62),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 45.0),
-              child: Text(
-                title,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 35.0),
-              child: Text(
-                description,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Color(0xFF9FA3A9), // Updated font color
-                ),
-              ),
-            ),
-          ],
-        ),
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+        Image.asset(
+        imagePath,
+        width: 219,
+        height: 187,
+    ),
+    SizedBox(height: 62),
+    Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 45.0),
+    child: Text(
+    title,
+    textAlign:TextAlign.center,
+      style: TextStyle(
+        fontSize: 25,
+        fontWeight: FontWeight.bold,
       ),
+    ),
+    ),
+          SizedBox(height: 16),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 35.0),
+            child: Text(
+              description,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 12,
+                color: Color(0xFF9FA3A9), // Updated font color
+              ),
+            ),
+          ),
+        ],
+        ),
+        ),
     );
   }
 }
-
-// Placeholder for RegisterPage, LoginPage, and SignupPage
-class RegisterPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Register")),
-      body: Center(child: Text("Register Page")),
-    );
-  }
-}
-
-class LoginPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Login")),
-      body: Center(child: Text("Login Page")),
-    );
-  }
-}
-
-class SignupPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Sign Up")),
-      body: Center(child: Text("Sign Up Page")),
-    );
-  }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: SplashScreens(),
-  ));
-}
-
-
-
-
-
-// import 'package:flutter/material.dart';
-//
-//
-// class Splash2 extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           crossAxisAlignment: CrossAxisAlignment.center,
-//           children: [
-//             Image.asset(
-//               'assets/Image/logo.png', // Make sure the logo image is in the assets folder
-//               width: 219,
-//               height: 187,
-//             ),
-//             SizedBox(height: 62),
-//             Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 45.0),
-//               child: Text(
-//                 'Best Way to learning is calling you!',
-//                 textAlign: TextAlign.center,
-//                 style: TextStyle(
-//                   fontSize: 25,
-//                   fontWeight: FontWeight.bold,
-//                 ),
-//               ),
-//             ),
-//             SizedBox(height: 16),
-//             Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 45.0),
-//               child: Text(
-//                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nec neque mauris eget.',
-//                 textAlign: TextAlign.center,
-//                 style: TextStyle(
-//                   fontSize: 15,
-//                 ),
-//               ),
-//             ),
-//             SizedBox(height: 18),
-//             Container(
-//               width: 335,
-//               height: 65,
-//               margin: EdgeInsets.only(top: 46),
-//               decoration: BoxDecoration(
-//                 gradient: const LinearGradient(
-//                   colors: [Color(0xFFA10048), Color(0xFF2300FF)], // Corrected color instantiation
-//                   stops: [0.0, 1.0],
-//                 ),
-//                 borderRadius: BorderRadius.circular(5.0),
-//               ),
-//               child: ElevatedButton(
-//                 onPressed: () {
-//                   // Add your button logic here
-//                 },
-//                 style: ButtonStyle(
-//                   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15.0)),
-//                   shape: MaterialStateProperty.all<OutlinedBorder>(
-//                     RoundedRectangleBorder(
-//                       borderRadius: BorderRadius.circular(5.0),
-//                     ),
-//                   ),
-//                   backgroundColor: MaterialStateProperty.resolveWith((states) {
-//                     if (states.contains(MaterialState.disabled)) {
-//                       return Colors.grey; // Silver color when disabled
-//                     }
-//                     return Colors.transparent; // Transparent background to allow gradient to show
-//                   }),
-//                   foregroundColor: MaterialStateProperty.resolveWith((states) {
-//                     if (states.contains(MaterialState.disabled)) {
-//                       return Colors.black54; // Text color when disabled
-//                     }
-//                     return Colors.white; // Text color when enabled
-//                   }),
-//                 ),
-//                 child: const Text(
-//                   'First Button',
-//                   style: TextStyle(fontSize: 16, fontFamily: 'Poppins'),
-//                 ),
-//               ),
-//             ),
-//             SizedBox(height: 26),
-//             Container(
-//               width: 335,
-//               height: 65,
-//               margin: EdgeInsets.only(top: 26),
-//               decoration: BoxDecoration(
-//                 gradient: const LinearGradient(
-//                   colors: [Color(0xFFA10048), Color(0xFF2300FF)], // Corrected color instantiation
-//                   stops: [0.0, 1.0],
-//                 ),
-//                 borderRadius: BorderRadius.circular(5.0),
-//               ),
-//               child: ElevatedButton(
-//                 onPressed: () {
-//                   // Add your button logic here
-//                 },
-//                 style: ButtonStyle(
-//                   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15.0)),
-//                   shape: MaterialStateProperty.all<OutlinedBorder>(
-//                     RoundedRectangleBorder(
-//                       borderRadius: BorderRadius.circular(5.0),
-//                     ),
-//                   ),
-//                   backgroundColor: MaterialStateProperty.resolveWith((states) {
-//                     if (states.contains(MaterialState.disabled)) {
-//                       return Colors.grey; // Silver color when disabled
-//                     }
-//                     return Colors.transparent; // Transparent background to allow gradient to show
-//                   }),
-//                   foregroundColor: MaterialStateProperty.resolveWith((states) {
-//                     if (states.contains(MaterialState.disabled)) {
-//                       return Colors.black54; // Text color when disabled
-//                     }
-//                     return Colors.white; // Text color when enabled
-//                   }),
-//                 ),
-//                 child: const Text(
-//                   'Second Button',
-//                   style: TextStyle(fontSize: 16, fontFamily: 'Poppins'),
-//                 ),
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-//
-//
-// SizedBox(height: 18),
-//             Container(
-//               width: 335,
-//               height: 65,
-//               margin: EdgeInsets.only(top: 46),
-//               decoration: BoxDecoration(
-//                 gradient: const LinearGradient(
-//                   colors: [Color(0xFFA10048), Color(0xFF2300FF)], // Corrected color instantiation
-//                   stops: [0.0, 1.0],
-//                 ),
-//                 borderRadius: BorderRadius.circular(5.0),
-//               ),
-//               child: ElevatedButton(
-//                 onPressed: () {
-//                   // Add your button logic here
-//                 },
-//                 style: ButtonStyle(
-//                   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15.0)),
-//                   shape: MaterialStateProperty.all<OutlinedBorder>(
-//                     RoundedRectangleBorder(
-//                       borderRadius: BorderRadius.circular(5.0),
-//                     ),
-//                   ),
-//                   backgroundColor: MaterialStateProperty.resolveWith((states) {
-//                     if (states.contains(MaterialState.disabled)) {
-//                       return Colors.grey; // Silver color when disabled
-//                     }
-//                     return Colors.transparent; // Transparent background to allow gradient to show
-//                   }),
-//                   foregroundColor: MaterialStateProperty.resolveWith((states) {
-//                     if (states.contains(MaterialState.disabled)) {
-//                       return Colors.black54; // Text color when disabled
-//                     }
-//                     return Colors.white; // Text color when enabled
-//                   }),
-//                 ),
-//                 child: const Text(
-//                   'First Button',
-//                   style: TextStyle(fontSize: 16, fontFamily: 'Poppins'),
-//                 ),
-//               ),
-//             ),
-//             SizedBox(height: 26),
-//             Container(
-//               width: 335,
-//               height: 65,
-//               margin: EdgeInsets.only(top: 26),
-//               decoration: BoxDecoration(
-//                 gradient: const LinearGradient(
-//                   colors: [Color(0xFFA10048), Color(0xFF2300FF)], // Corrected color instantiation
-//                   stops: [0.0, 1.0],
-//                 ),
-//                 borderRadius: BorderRadius.circular(5.0),
-//               ),
-//               child: ElevatedButton(
-//                 onPressed: () {
-//                   // Add your button logic here
-//                 },
-//                 style: ButtonStyle(
-//                   padding: MaterialStateProperty.all<EdgeInsetsGeometry>(const EdgeInsets.all(15.0)),
-//                   shape: MaterialStateProperty.all<OutlinedBorder>(
-//                     RoundedRectangleBorder(
-//                       borderRadius: BorderRadius.circular(5.0),
-//                     ),
-//                   ),
-//                   backgroundColor: MaterialStateProperty.resolveWith((states) {
-//                     if (states.contains(MaterialState.disabled)) {
-//                       return Colors.grey; // Silver color when disabled
-//                     }
-//                     return Colors.transparent; // Transparent background to allow gradient to show
-//                   }),
-//                   foregroundColor: MaterialStateProperty.resolveWith((states) {
-//                     if (states.contains(MaterialState.disabled)) {
-//                       return Colors.black54; // Text color when disabled
-//                     }
-//                     return Colors.white; // Text color when enabled
-//                   }),
-//                 ),
-//                 child: const Text(
-//                   'Second Button',
-//                   style: TextStyle(fontSize: 16, fontFamily: 'Poppins'),
-//                 ),
-//               ),
-//             ),
