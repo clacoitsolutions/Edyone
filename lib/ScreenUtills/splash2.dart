@@ -76,7 +76,7 @@ class _SplashScreensState extends State<SplashScreens> {
             ],
           ),
           Positioned(
-            bottom: 170,
+            bottom: 150,
             left: 0,
             right: 0,
             child: Center(
@@ -105,17 +105,28 @@ class _SplashScreensState extends State<SplashScreens> {
               ),
             ),
           ),
-
           Positioned(
-            top: 50,
+            top: 30,
             right: 20,
             child: TextButton(
               onPressed: _skip,
-              child: Text('Skip', style: TextStyle(fontSize: 18, color: Colors.blue)),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Text(
+                  //   'Skip',
+                  //   style: TextStyle(fontSize: 18, color: Colors.blue),
+                  // ),
+                  SizedBox(width: 5),
+                  Image.asset(
+                    'assets/images/skip.png', // Make sure the skip icon is in the assets folder
+                    width: 45,
+                    height: 22,
+                  ),
+                ],
+              ),
             ),
           ),
-
-
           Positioned(
             bottom: 20,
             left: 0,
@@ -123,8 +134,8 @@ class _SplashScreensState extends State<SplashScreens> {
             child: Column(
               children: [
                 Container(
-                  width: 235,
-                  height: 55,
+                  width: 200,
+                  height: 45,
                   margin: EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
@@ -167,8 +178,8 @@ class _SplashScreensState extends State<SplashScreens> {
                   ),
                 ),
                 Container(
-                  width: 235,
-                  height: 55,
+                  width: 200,
+                  height: 45,
                   margin: EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
                     color: Colors.white, // Set container color to white
@@ -208,12 +219,6 @@ class _SplashScreensState extends State<SplashScreens> {
                     ),
                   ),
                 ),
-
-
-
-
-
-
               ],
             ),
           ),
@@ -222,8 +227,6 @@ class _SplashScreensState extends State<SplashScreens> {
     );
   }
 }
-
-
 
 class SplashScreenContent extends StatelessWidget {
   final String imagePath;
@@ -239,43 +242,43 @@ class SplashScreenContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-        Image.asset(
-        imagePath,
-        width: 219,
-        height: 187,
-    ),
-    SizedBox(height: 62),
-    Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 45.0),
-    child: Text(
-    title,
-    textAlign:TextAlign.center,
-      style: TextStyle(
-        fontSize: 25,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-    ),
-          SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 35.0),
-            child: Text(
-              description,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 12,
-                color: Color(0xFF9FA3A9), // Updated font color
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              imagePath,
+              width: 200,
+              height: 182,
+            ),
+            SizedBox(height: 52),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 35.0),
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-        ],
+            SizedBox(height: 14),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 35.0),
+              child: Text(
+                description,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Color(0xFF9FA3A9), // Updated font color
+                ),
+              ),
+            ),
+          ],
         ),
-        ),
+      ),
     );
   }
 }
